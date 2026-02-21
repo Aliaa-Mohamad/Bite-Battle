@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="/css/base.css" />
     <link rel="stylesheet" href="/css/nav.css" />
     <link rel="stylesheet" href="/css/setting.css" />
-    <link rel="stylesheet" href="/css/leaderboard.css">
+    <link rel="stylesheet" href="/css/leaderboard.css" />
     <!-- <link rel="stylesheet" href="/css/style.css"> -->
   </head>
   <body>
@@ -29,6 +29,11 @@
               class="score-box d-flex align-items-center gap-4"
             >
               <span class="player-name-display" id="player-name"></span>
+              <i
+                class="shield fa-solid fa-shield"
+                style="display: none; opacity: 0"
+                id="player-shield"
+              ></i>
 
               <div class="score-number d-flex align-items-center gap-2">
                 <i class="fa-solid fa-cog" id="settings"></i>
@@ -48,6 +53,11 @@
               class="score-box d-flex align-items-center gap-4"
             >
               <span class="player-name-display" id="bot-name"></span>
+              <i
+                class="shield fa-solid fa-shield"
+                style="display: none; opacity: 0"
+                id="bot-shield"
+              ></i>
 
               <ul
                 id="bot-lives"

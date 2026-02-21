@@ -3,12 +3,14 @@ import { Bot } from "./bot.js";
 import { FoodArray } from "./foodArray.js";
 import { ChiliArray } from "./chiliArray.js";
 import { HeartArrr } from "./heartArray.js";
+import { ShieldArray } from "./shieldArray.js";
 import { Game } from "./game.js";
 import { showNameInput, levels } from "./settings.js";
 
 export const FoodArr = new FoodArray(20);
 export const food = FoodArr.getFoodArr();
 export const ChiliArr = new ChiliArray(5);
+export const ShieldArr = new ShieldArray(5);
 export const HeartArr = new HeartArrr(5);
 const playerElement = document.getElementById("player");
 const playerName = document.getElementById("player-name");
@@ -70,7 +72,7 @@ export const p = new Player(
   playerElement,
   "player",
   parseInt(getComputedStyle(playerElement).left),
-  parseInt(getComputedStyle(playerElement).bottom),
+  parseInt(getComputedStyle(playerElement).bottom)
 );
 
 export const b = new Bot(

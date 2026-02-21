@@ -44,6 +44,11 @@ settingsSection.addEventListener("submit", (e) => {
     localStorage.setItem("level", level);
     settingsSection.style.opacity = 0;
     p.allowedToMove = 1;
+    if (!Game.startOfGame) {
+      console.log('l')
+      // Game.manageGame(0);
+      window.location.reload();
+    }
   }
 
   const name = nameInput.value.trim();
@@ -62,8 +67,7 @@ settingsSection.addEventListener("submit", (e) => {
 
 export function showNameInput() {
   settingsSection.style.opacity = 1;
-  if (!Game.startOfGame)
-    document.getElementById("selectDiv").style.display = "none";
+  // document.getElementById("selectDiv").style.display = "none";
 }
 
 closeNameForm.addEventListener("click", () => {

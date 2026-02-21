@@ -2,7 +2,7 @@ import { Boundary } from "./boundary.js";
 import { Life } from "./life.js";
 import { Game } from "./game.js";
 import { FoodArr, ChiliArr, HeartArr } from "./main.js";
-import { Heart } from "./heart.js";
+import { ShieldArr } from "./main.js";
 let heightBoundry = Boundary.heightBoundary;
 let widthBoundry = Boundary.widthBoundary;
 const playerScore = document.querySelector("#player-score .score-number span");
@@ -23,6 +23,7 @@ export class Player {
     this.lives = [];
     this.createLives(3);
     this.allowedToMove = 1;
+    this.shielded = false;
   }
 
   createLives(number) {
@@ -55,6 +56,7 @@ export class Player {
       p.element.style.bottom = bottom + "px";
       p.element.style.left = left + "px";
       Game.startOfGame = false;
+      // console.log(Game.startOfGame);
     }
     this.crash();
   }
@@ -127,46 +129,52 @@ export class Player {
         pBottom < cBottom + cHeight &&
         pBottom + pHeight > cBottom
       ) {
-        this.resizePlayer("-");
-        const lostLife = this.lives.pop();
-        lostLife.getElement().remove();
-        if (this.lives.length == 0) {
-          // 3 , 2 , 1
-          Game.manageGame(2, this);
+        if (!this.shielded) {
+          // خصم الحياة لو مش shielded
+          this.resizePlayer("-");
+          const lostLife = this.lives.pop();
+          lostLife.getElement().remove();
+          if (this.lives.length == 0) {
+            Game.manageGame(2, this);
+          }
+          this.changeScore(false);
         } else {
+          // إذا player shielded، يمنع خسارة الحياة
+          // ممكن تعمل effect صغير أو تحافظ على حجم player
         }
-
         Boundary.changeBoundary();
-        this.changeScore(false);
       }
     });
 
-    HeartArr.getHeartArr().forEach((h) => {
-      const hLeft = Math.ceil(parseFloat(h.element.style.left));
-      const hBottom = Math.ceil(parseFloat(h.element.style.bottom));
-      const hWidth = parseInt(getComputedStyle(h.element).width);
-      const hHeight = parseInt(getComputedStyle(h.element).height);
+    ShieldArr.getShieldArr().forEach((sh) => {
+      const shLeft = Math.ceil(parseFloat(sh.element.style.left));
+      const shBottom = Math.ceil(parseFloat(sh.element.style.bottom));
+      const shWidth = parseInt(getComputedStyle(sh.element).width);
+      const shHeight = parseInt(getComputedStyle(sh.element).height);
 
       if (
-        pLeft < hLeft + hWidth &&
-        pLeft + pWidth > hLeft &&
-        pBottom < hBottom + hHeight &&
-        pBottom + pHeight > hBottom
+        pLeft < shLeft + shWidth &&
+        pLeft + pWidth > shLeft &&
+        pBottom < shBottom + shHeight &&
+        pBottom + pHeight > shBottom
       ) {
-        if (this.lives.length < 3) {
-          const newLife = new Life();
-          this.lives.push(newLife);
+        if (!this.shielded) {
+          sh.element.remove();
+          ShieldArr.deleteShield(sh);
+          this.shielded = true;
+          let navShield =
+            this.type == "player"
+              ? document.getElementById("player-shield")
+              : document.getElementById("bot-shield");
+          navShield.style.opacity = 1;
+          navShield.style.display = "block";
+          setTimeout(() => {
+            navShield.style.opacity = 0;
+            navShield.style.display = "none";
 
-          if (this.type === "player") {
-            playerLives.append(newLife.getElement());
-          } else {
-            botLives.append(newLife.getElement());
-          }
-          HeartArr.deleteHeart(h);
+            this.shielded = false;
+          }, 3000);
         }
-
-        Boundary.changeBoundary();
-        // this.changeScore(true);
       }
     });
   }

@@ -12,6 +12,10 @@ img {
   object-fit: cover;
 }
 
+.shield {
+  color: aqua !important;
+}
+
 /* Absolute game elements */
 /* #food,
 #player,
