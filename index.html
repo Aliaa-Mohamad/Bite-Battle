@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game</title>
+    <link rel="icon" href="/resources/player.gif" />
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/all.min.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- <link rel="stylesheet" href="/css/setName.css"> -->
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div id="garden">
+        <!-- nav -->
+        <div class="container">
+          <div
+            id="score"
+            class="fixed-top d-flex justify-content-between align-items-center px-4"
+          >
+            <!-- Player -->
+            <div
+              id="player-score"
+              class="score-box d-flex align-items-center gap-4"
+            >
+              <span class="player-name-display" id="player-name"></span>
+
+              <div class="score-number d-flex align-items-center gap-2">
+                <i class="fa-solid fa-cog" id="settings"></i>
+                <i class="fa-solid fa-burger"></i>
+                <span id="ps">0</span>
+              </div>
+
+              <ul
+                id="player-lives"
+                class="lives list-unstyled d-flex gap-2 mb-0"
+              ></ul>
+            </div>
+
+            <!-- Bot -->
+            <div
+              id="bot-score"
+              class="score-box d-flex align-items-center gap-4"
+            >
+              <span class="player-name-display" id="bot-name"></span>
+
+              <ul
+                id="bot-lives"
+                class="lives list-unstyled d-flex gap-2 mb-0"
+              ></ul>
+
+              <div class="score-number d-flex align-items-center gap-2">
+                <i class="fa-solid fa-burger"></i>
+                <span id="bs">0</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- player -->
+        <div id="player" style="width: 50px; height: 50px; bottom: 0; left: 0">
+          <img src="/resources/player.gif" />
+        </div>
+        <!-- bot -->
+        <div id="bot" style="width: 50px; height: 50px; bottom: 0; right: 0">
+          <img src="/resources/bot.gif" />
+        </div>
+        <!-- setName -->
+        <div id="settings-section">
+          <!-- Close Icon -->
+          <span id="closeNameForm">&times;</span>
+
+          <form
+            id="name-form"
+            class="d-flex flex-column align-items-center w-100"
+          >
+            <label for="nameInput" class="form-label player-name"
+              >Enter Your Name</label
+            >
+            <input
+              type="text"
+              class="form-control mb-3"
+              id="nameInput"
+              placeholder="Your name..."
+            />
+
+            <div id="selectDiv">
+              <label for="levelSelect" class="form-label player-name"
+              >Choose Level</label
+            >
+            <select id="levelSelect">
+              <option value="mild">Mild</option>
+              <option value="spicy">Spicy</option>
+              <option value="fiery">Fiery</option>
+              <option value="extreme">Extreme</option>
+            </select>
+            </div>
+
+            <button type="submit" class="btn btn-success w-50" id="start">
+              Start Game
+            </button>
+          </form>
+        </div>
+
+        <!-- leader board -->
+        <div id="leader-board" style="opacity: 0">
+          <div class="confetti-container"></div>
+          <i class="fa-solid fa-cog" id="setting-in-board"></i>
+
+          <h3 class="leader-title"></h3>
+
+          <div id="player-section" class="board-item">
+            <div class="img-item" id="player-in-board">
+              <img src="/resources/player.gif" alt="player" />
+            </div>
+            <span class="player-name" id="playerName"></span>
+
+            <span class="final-score" id="playerFscore"></span>
+
+            <div class="final-lives" id="playerFinalLives"></div>
+          </div>
+          <div id="bot-section" class="board-item">
+            <div class="img-item" id="bot-in-board">
+              <img src="/resources/bot.gif" alt="bot" />
+            </div>
+            <span class="bot-name" id="botName"></span>
+
+            <span class="final-score" id="botFscore"></span>
+
+            <div class="final-lives" id="botFinalLives"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="/script/main.js" type="module"></script>
+    <!-- <script src="/script/setName.js" type="module"></script> -->
+  </body>
+</html>

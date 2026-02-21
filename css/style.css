@@ -1,0 +1,503 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* .box {
+  width: 100%;
+  height: 100;
+  display: flex;
+  align-items: center;
+} */
+
+.container-fluid {
+  --bs-gutter-x: 0;
+}
+
+#garden {
+  background-image: url(/resources/garden.png);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  /* pointer-events: none; */
+  /* padding: 200px; */
+}
+
+#food,
+#player,
+#bot,
+#pepper {
+  position: absolute;
+}
+
+#food img,
+#player img,
+#bot img,
+#pepper img,
+#heart img {
+  width: 100%;
+  object-fit: cover;
+}
+
+#player,
+#bot {
+  transition: bottom 0.2s, left 0.2s;
+}
+
+#score {
+  height: 60px;
+  font-size: 1.2rem;
+  /* background: rgba(0, 0, 0, 0.7); */
+  backdrop-filter: blur(2px);
+  color: white;
+  z-index: 100;
+}
+
+.score-box {
+  /* background: rgba(255, 255, 255, 0.08); */
+  padding: 8px 18px;
+  border-radius: 12px;
+}
+
+.score-number i {
+  color: #ffb703;
+}
+
+.lives i {
+  color: #ff4d4d;
+  transition: 0.3s;
+}
+
+.lives i:hover {
+  transform: scale(1.2);
+}
+
+#score span {
+  font-weight: bold;
+}
+
+#settings {
+  cursor: pointer;
+  /* color: #444; */
+}
+
+/* الاسم فوق الـ score-box */
+/* الاسم جنب العناصر */
+.player-name-display {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.5px;
+  transition: 0.3s ease;
+}
+
+/* تأثير خفيف عند الهوفر */
+.player-name-display:hover {
+  background: rgba(255, 183, 3, 0.8);
+  color: #222;
+  transform: scale(1.05);
+}
+
+/* تحسين شكل الصندوق */
+.score-box {
+  padding: 8px 20px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+  min-height: 45px;
+}
+
+/* =========================
+   Leader Board
+========================= */
+
+#leader-board {
+  position: absolute; /* بدل relative */
+  top: 50%; /* يظهر في المنتصف عموديًا */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 500; /* تحت الـ nameForm */
+  width: 420px;
+  min-height: 300px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 50px 30px;
+  opacity: 0; /* يبدأ مخفي */
+  transition: all 0.5s ease;
+  pointer-events: auto;
+}
+
+#settings-section {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000; /* أعلى من leaderboard */
+  width: 350px;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: auto;
+}
+
+/* Divider line */
+#leader-board::before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 55%;
+  background: rgba(0, 0, 0, 0.08);
+  left: 50%;
+  top: 25%;
+  opacity: var(--hide-divider, 1);
+  transition: 0.4s ease;
+  pointer-events: none;
+}
+
+/* Optional Title */
+.leader-title {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 15px;
+  font-weight: 700;
+  color: #444;
+  letter-spacing: 1.5px;
+}
+
+/* =========================
+   Board Item
+========================= */
+
+.board-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+/* Avatar circle */
+.img-item {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background: #f1f1f1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: 0.5s ease;
+}
+
+.img-item img {
+  width: 60px;
+  height: 60px;
+}
+
+/* Score style */
+.player-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+}
+
+.final-lives {
+  display: flex;
+  gap: 4px;
+}
+
+.final-lives i {
+  color: #ff4d4d;
+  font-size: 14px;
+}
+
+.final-score {
+  font-size: 26px;
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 1px;
+  transition: 0.4s ease;
+}
+
+/* =========================
+   Winner State
+========================= */
+
+.board-item.winner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1.15);
+  z-index: 30;
+}
+
+.board-item.winner .img-item {
+  box-shadow: 0 0 15px rgba(46, 125, 50, 0.25);
+}
+
+.board-item.winner .final-score {
+  color: #1b5e20;
+  font-size: 30px;
+}
+
+/* =========================
+   Hidden (Loser) State
+========================= */
+
+.board-item.hidden {
+  opacity: 0;
+  transform: translateY(20px) scale(0.8);
+  pointer-events: none;
+}
+
+/* Smooth animation targets */
+#player-in-board,
+#bot-in-board {
+  transition: 0.8s ease;
+}
+
+/* =========================
+   Confetti
+========================= */
+
+.confetti-container {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 12px;
+  background: red;
+  opacity: 0.9;
+  animation: confetti-fall 1.5s ease-out forwards;
+}
+
+.board-item.tie {
+  transform: scale(1.05);
+  animation: tiePulse 1s ease;
+}
+
+.board-item.tie .img-item {
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.15);
+}
+
+.board-item.tie .final-score {
+  color: #444;
+  font-size: 28px;
+}
+
+@keyframes tiePulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.07);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--x), var(--y)) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* setName */
+#settings-section {
+  opacity: 0;
+  z-index: 1000;
+}
+
+#name-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  width: 100%;
+
+  /* z-index: 1200; */
+}
+
+#name-form input {
+  border-radius: 12px;
+  padding: 10px 15px;
+  font-size: 16px;
+  text-align: center;
+  /* z-index: 1200; */
+}
+
+#name-form button {
+  border-radius: 12px;
+  padding: 8px 20px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#name-form button:hover {
+  background-color: #43a047;
+}
+
+#setting-in-board {
+  opacity: 0;
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+  color: #444;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+#setting-in-board:hover {
+  transform: rotate(30deg);
+}
+
+#closenameForm {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #444;
+  cursor: pointer;
+  transition: 0.3s;
+  z-index: 1100;
+}
+
+#closenameForm:hover {
+  color: #ff4d4d;
+  transform: rotate(90deg); /* تأثير صغير لما نمرر عليه */
+}
+
+/* Label */
+#name-form .form-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+/* Input & Select common style */
+#name-form input,
+#name-form select {
+  border-radius: 16px;
+  padding: 12px 18px;
+  font-size: 16px;
+  text-align: center;
+  width: 100%;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(5px);
+  color: #333;
+  transition: all 0.3s ease;
+  outline: none;
+  appearance: none; /* لإزالة شكل السهم الافتراضي في بعض المتصفحات */
+  cursor: pointer;
+}
+
+/* Hover & Focus effect */
+#name-form input:hover,
+#name-form select:hover,
+#name-form input:focus,
+#name-form select:focus {
+  border-color: #ffb703;
+  box-shadow: 0 0 8px rgba(255, 183, 3, 0.4);
+}
+
+/* زر البدء */
+#name-form button {
+  border-radius: 16px;
+  padding: 12px 25px;
+  font-size: 16px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+#name-form button:hover {
+  background-color: #43a047;
+  transform: scale(1.03);
+}
+
+/* إزالة الشكل الافتراضي للـ select */
+#name-form select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  width: 100%; /* نفس عرض input */
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(5px);
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  /* مساحة للسهم */
+  padding-right: 40px;
+}
+
+/* hover & focus effect */
+#name-form select:hover,
+#name-form select:focus {
+  border-color: #ffb703;
+  box-shadow: 0 0 8px rgba(255, 183, 3, 0.4);
+  outline: none;
+}
+
+/* سهم dropdown custom */
+#name-form select {
+  background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 18px;
+}
