@@ -24,27 +24,32 @@
             class="fixed-top d-flex justify-content-between align-items-center px-4"
           >
             <!-- Player -->
-            <div
-              id="player-score"
-              class="score-box d-flex align-items-center gap-4"
-            >
-              <span class="player-name-display" id="player-name"></span>
-              <i
-                class="shield fa-solid fa-shield"
-                style="display: none; opacity: 0"
-                id="player-shield"
-              ></i>
+            <div class="left-sec">
+              <div
+                id="player-score"
+                class="score-box d-flex align-items-center gap-4"
+              >
+                <span class="player-name-display" id="player-name"></span>
+                <i
+                  class="shield fa-solid fa-shield"
+                  style="display: none; opacity: 0"
+                  id="player-shield"
+                ></i>
 
-              <div class="score-number d-flex align-items-center gap-2">
-                <i class="fa-solid fa-cog" id="settings"></i>
-                <i class="fa-solid fa-burger"></i>
-                <span id="ps">0</span>
+                <div class="score-number d-flex align-items-center gap-2">
+                  <i class="fa-solid fa-cog" id="settings"></i>
+                  <i class="fa-solid fa-burger"></i>
+                  <span id="ps">0</span>
+                </div>
+
+                <ul
+                  id="player-lives"
+                  class="lives list-unstyled d-flex gap-2 mb-0"
+                ></ul>
               </div>
-
-              <ul
-                id="player-lives"
-                class="lives list-unstyled d-flex gap-2 mb-0"
-              ></ul>
+              <button id="pause-btn" class="pause-btn">
+                <i class="fa-solid fa-pause"></i>
+              </button>
             </div>
 
             <!-- Bot -->

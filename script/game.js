@@ -150,5 +150,5 @@ export class Game {
     p.allowedToMove = false;
     b.stop();
   }
-
 }
+

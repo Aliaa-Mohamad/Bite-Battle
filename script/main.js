@@ -17,6 +17,7 @@ const playerName = document.getElementById("player-name");
 const botName = document.getElementById("bot-name");
 const botElement = document.getElementById("bot");
 const levelSelect = document.getElementById("levelSelect");
+const pauseBtn = document.getElementById("pause-btn");
 
 const botNames = [
   "Amira",
@@ -121,7 +122,15 @@ playerName.innerHTML = p.name;
 for (let key in levels) {
   if (levels[key] == localStorage.getItem("level")) levelSelect.value = key;
 }
-// levels.forEach(level => {
-//   levelSelect.value = localStorage.getItem("level");
 
-// });
+pauseBtn.addEventListener("click", (_) => {
+  if (p.allowedToMove) {
+    pauseBtn.innerHTML = `<i class="fa-solid fa-play"></i>`;
+    p.allowedToMove = false;
+    b.stop();
+  } else {
+    pauseBtn.innerHTML = `<i class="fa-solid fa-pause"></i>`;
+    p.allowedToMove = true;
+    b.moveBot();
+  }
+});

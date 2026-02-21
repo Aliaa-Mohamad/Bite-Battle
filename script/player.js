@@ -117,6 +117,34 @@ export class Player {
       }
     });
 
+    HeartArr.getHeartArr().forEach((h) => {
+      const hLeft = Math.ceil(parseFloat(h.element.style.left));
+      const hBottom = Math.ceil(parseFloat(h.element.style.bottom));
+      const hWidth = parseInt(getComputedStyle(h.element).width);
+      const hHeight = parseInt(getComputedStyle(h.element).height);
+
+      if (
+        pLeft < hLeft + hWidth &&
+        pLeft + pWidth > hLeft &&
+        pBottom < hBottom + hHeight &&
+        pBottom + pHeight > hBottom
+      ) {
+        if (this.lives.length < 3) {
+          const newLife = new Life();
+          this.lives.push(newLife);
+
+          if (this.type === "player") {
+            playerLives.append(newLife.getElement());
+          } else {
+            botLives.append(newLife.getElement());
+          }
+
+          h.element.remove();
+          HeartArr.deleteHeart(h);
+        }
+      }
+    });
+
     ChiliArr.getChiliArr().forEach((c) => {
       const cLeft = Math.ceil(parseFloat(c.element.style.left));
       const cBottom = Math.ceil(parseFloat(c.element.style.bottom));
@@ -130,7 +158,6 @@ export class Player {
         pBottom + pHeight > cBottom
       ) {
         if (!this.shielded) {
-          // خصم الحياة لو مش shielded
           this.resizePlayer("-");
           const lostLife = this.lives.pop();
           lostLife.getElement().remove();
