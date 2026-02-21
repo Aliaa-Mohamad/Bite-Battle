@@ -1,4 +1,4 @@
-# Spicy Survival
+# Bite Battel
 
 A browser-based game where the player competes against a bot to collect food, avoid obstacles, and survive as long as possible.
 
