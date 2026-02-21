@@ -1,15 +1,12 @@
 import { p, b, createConfetti, firstTime } from "./main.js";
 export class Game {
-  constructor() {
-    const playerName = document.getElementById("playerName");
-    const botName = document.getElementById("botName");
-  }
   static state = 1;
   static startOfGame = true;
-  static manageGame(state) {
+  static manageGame(state, loser = false) {
+    const playerName = document.getElementById("playerName");
+    const botName = document.getElementById("botName");
     if (p.name) playerName.innerText = p.name;
     if (b.name) botName.innerText = b.name;
-
     // 0 : start
     // 2 : end
     const settingInBoard = document.getElementById("setting-in-board");
@@ -87,38 +84,61 @@ export class Game {
           const playerLivesCount = p.lives.length;
           const botLivesCount = b.lives.length;
 
-          if (
-            p.finalScore > b.finalScore ||
-            (p.finalScore === b.finalScore && playerLivesCount > botLivesCount)
-          ) {
-            // Player Wins
-            botSection.classList.add("hidden");
-            playerSection.classList.add("winner");
+          if (loser) {
+            const winner = loser === p ? b : p;
 
-            leaderBoard.style.setProperty("--hide-divider", "0");
-            for (let i = 0; i < p.lives.length; i++) {
-              playerFinalLives.innerHTML += `<i class="fa-solid fa-heart"></i>`;
-            }
-            createConfetti();
-          } else if (
-            b.finalScore > p.finalScore ||
-            (b.finalScore === p.finalScore && botLivesCount > playerLivesCount)
-          ) {
-            // Bot Wins
-            playerSection.classList.add("hidden");
-            botSection.classList.add("winner");
-            for (let i = 0; i < b.lives.length; i++) {
-              botFinalLives.innerHTML += `<i class="fa-solid fa-heart"></i>`;
+            if (winner === p) {
+              botSection.classList.add("hidden");
+              playerSection.classList.add("winner");
+
+              for (let i = 0; i < p.lives.length; i++) {
+                playerFinalLives.innerHTML += `<i class="fa-solid fa-heart"></i>`;
+              }
+            } else {
+              playerSection.classList.add("hidden");
+              botSection.classList.add("winner");
+
+              for (let i = 0; i < b.lives.length; i++) {
+                botFinalLives.innerHTML += `<i class="fa-solid fa-heart"></i>`;
+              }
             }
 
             leaderBoard.style.setProperty("--hide-divider", "0");
             createConfetti();
           } else {
-            // Real Tie (score + lives equal)
-            playerSection.classList.add("tie");
-            botSection.classList.add("tie");
+            if (
+              p.finalScore > b.finalScore ||
+              (p.finalScore === b.finalScore &&
+                playerLivesCount > botLivesCount)
+            ) {
+              botSection.classList.add("hidden");
+              playerSection.classList.add("winner");
 
-            leaderBoard.style.setProperty("--hide-divider", "1");
+              for (let i = 0; i < p.lives.length; i++) {
+                playerFinalLives.innerHTML += `<i class="fa-solid fa-heart"></i>`;
+              }
+
+              leaderBoard.style.setProperty("--hide-divider", "0");
+              createConfetti();
+            } else if (
+              b.finalScore > p.finalScore ||
+              (b.finalScore === p.finalScore &&
+                botLivesCount > playerLivesCount)
+            ) {
+              playerSection.classList.add("hidden");
+              botSection.classList.add("winner");
+
+              for (let i = 0; i < b.lives.length; i++) {
+                botFinalLives.innerHTML += `<i class="fa-solid fa-heart"></i>`;
+              }
+
+              leaderBoard.style.setProperty("--hide-divider", "0");
+              createConfetti();
+            } else {
+              playerSection.classList.add("tie");
+              botSection.classList.add("tie");
+              leaderBoard.style.setProperty("--hide-divider", "1");
+            }
           }
         }, 1500);
         break;

@@ -7,7 +7,7 @@ let widthBoundry = Boundary.widthBoundary;
 let heightBoundry = Boundary.heightBoundary;
 
 export class Bot extends Player {
-  constructor(name, element, type, left, bottom,  level) {
+  constructor(name, element, type, left, bottom, level) {
     super(name, element, type, left, bottom, level);
     this.level = level || 1500;
     this.xDirection = 1;

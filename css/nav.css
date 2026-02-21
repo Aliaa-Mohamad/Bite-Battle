@@ -1,0 +1,66 @@
+#score {
+  height: 60px;
+  font-size: 1.2rem;
+  /* background: rgba(0, 0, 0, 0.7); */
+  backdrop-filter: blur(2px);
+  color: white;
+  z-index: 100;
+}
+
+.score-box {
+  /* background: rgba(255, 255, 255, 0.08); */
+  padding: 8px 18px;
+  border-radius: 12px;
+}
+
+.score-number i {
+  color: #ffb703;
+}
+
+.lives i {
+  color: #ff4d4d;
+  transition: 0.3s;
+}
+
+.lives i:hover {
+  transform: scale(1.2);
+}
+
+#score span {
+  font-weight: bold;
+}
+
+#settings {
+  cursor: pointer;
+  /* color: #444; */
+}
+
+/* الاسم فوق الـ score-box */
+/* الاسم جنب العناصر */
+.player-name-display {
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.5px;
+  transition: 0.3s ease;
+}
+
+/* تأثير خفيف عند الهوفر */
+.player-name-display:hover {
+  background: rgba(255, 183, 3, 0.8);
+  color: #222;
+  transform: scale(1.05);
+}
+
+/* تحسين شكل الصندوق */
+.score-box {
+  padding: 8px 20px;
+  border-radius: 16px;
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+  min-height: 45px;
+}

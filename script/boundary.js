@@ -1,5 +1,3 @@
-// import { widthBoundry } from "./food";
-
 export class Boundary {
   constructor() {}
   static widthBoundary = window.innerWidth - 50;

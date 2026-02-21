@@ -1,0 +1,49 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Images */
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Absolute game elements */
+/* #food,
+#player,
+#bot,
+#pepper {
+  position: absolute;
+}
+
+/* Transitions (shared) */
+/* #player,
+#bot {
+  transition: bottom 0.2s, left 0.2s;
+} 
+
+Lists
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+
+.glass {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+}
+
+
+.hover-scale {
+  transition: 0.3s;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+} */

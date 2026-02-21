@@ -132,7 +132,7 @@ export class Player {
         lostLife.getElement().remove();
         if (this.lives.length == 0) {
           // 3 , 2 , 1
-          Game.manageGame(2);
+          Game.manageGame(2, this);
         } else {
         }
 
@@ -166,7 +166,7 @@ export class Player {
         }
 
         Boundary.changeBoundary();
-        this.changeScore(true);
+        // this.changeScore(true);
       }
     });
   }

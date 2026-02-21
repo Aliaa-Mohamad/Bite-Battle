@@ -1,0 +1,35 @@
+.container-fluid {
+  --bs-gutter-x: 0;
+}
+
+#garden {
+  background-image: url(/resources/garden.png);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+#food,
+#player,
+#bot,
+#pepper {
+  position: absolute;
+}
+
+#food img,
+#player img,
+#bot img,
+#pepper img,
+#heart img {
+  width: 100%;
+  object-fit: cover;
+}
+
+#player,
+#bot {
+  transition: bottom 0.2s, left 0.2s;
+}
